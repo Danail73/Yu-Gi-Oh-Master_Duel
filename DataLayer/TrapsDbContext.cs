@@ -21,6 +21,7 @@ namespace DataLayer
             try
             {
                 _cardsDbContext.Traps.Add(entity);
+                _cardsDbContext.Cards.Add(entity);
                 _cardsDbContext.SaveChanges();
             }
             catch(Exception ex)
@@ -83,6 +84,7 @@ namespace DataLayer
                     throw new Exception($"Trap with id = {key} does not exist");
                 }
                 _cardsDbContext.Traps.Remove(trap);
+                _cardsDbContext.Cards.Remove(trap);
                 _cardsDbContext.SaveChanges();
             }
             catch (Exception ex)

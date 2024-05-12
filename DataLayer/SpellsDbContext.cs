@@ -21,6 +21,7 @@ namespace DataLayer
             try
             {
                 _cardsDbContext.Spells.Add(entity);
+                _cardsDbContext.Cards.Add(entity);
                 _cardsDbContext.SaveChanges();
             }
             catch (Exception ex) 
@@ -83,6 +84,7 @@ namespace DataLayer
                     throw new Exception($"Spell with id = {key} does not exist");
                 }
                 _cardsDbContext.Spells.Remove(spell);
+                _cardsDbContext.Cards.Remove(spell);
                 _cardsDbContext.SaveChanges();
             }
             catch (Exception ex)

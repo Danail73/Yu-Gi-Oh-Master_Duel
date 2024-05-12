@@ -21,6 +21,7 @@ namespace DataLayer
             try
             {
                 _cardsDbContext.Monsters.Add(entity);
+                _cardsDbContext.Cards.Add(entity);
                 _cardsDbContext.SaveChanges();
             }
             catch (Exception ex)
@@ -83,6 +84,7 @@ namespace DataLayer
                     throw new Exception($"Monster with id = {key} does not exist");
                 }
                 _cardsDbContext.Monsters.Remove(monster);
+                _cardsDbContext.Cards.Remove(monster);
                 _cardsDbContext.SaveChanges();
             }
             catch (Exception ex)
