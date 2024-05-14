@@ -1,41 +1,40 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore.ValueGeneration.Internal;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using BusinessLayer;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 namespace DataLayer
 {
-    public class SpellsDbContext : IDB<Spell, int>
+    public class CardsContext : IDB<Card, int>
     {
         private readonly CardsDbContext _cardsDbContext;
-        public SpellsDbContext(CardsDbContext cardsDbContext)
+        public CardsContext(CardsDbContext cardsDbContext)
         {
             _cardsDbContext = cardsDbContext;
         }
 
-        public void Create(Spell entity)
+        public void Create(Card entity)
         {
             try
             {
-                _cardsDbContext.Spells.Add(entity);
                 _cardsDbContext.Cards.Add(entity);
                 _cardsDbContext.SaveChanges();
             }
-            catch (Exception ex) 
+            catch(Exception ex)
             {
                 throw;
             }
         }
 
-        public Spell Read(int key, bool useNavigational = false, bool isReadonly = false)
+        public Card Read(int key, bool useNavigational = false, bool isReadonly = false)
         {
             try
             {
-                IQueryable<Spell> query = _cardsDbContext.Spells;
-                return query.SingleOrDefault(s => s.Id == key);
+                IQueryable<Card> query = _cardsDbContext.Cards;
+                return query.SingleOrDefault(c => c.Id == key);
             }
             catch (Exception ex)
             {
@@ -43,11 +42,11 @@ namespace DataLayer
             }
         }
 
-        public List<Spell> ReadAll(bool useNavigational = false, bool isReadonly = false)
+        public List<Card> ReadAll(bool useNavigational = false, bool isReadonly = false)
         {
             try
             {
-                IQueryable<Spell> query = _cardsDbContext.Spells;
+                IQueryable<Card> query = _cardsDbContext.Cards;
                 return query.ToList();
             }
             catch (Exception ex)
@@ -56,16 +55,16 @@ namespace DataLayer
             }
         }
 
-        public void Update(Spell entity, bool useNavigational = false, bool isReadonly = false)
+        public void Update(Card entity, bool useNavigational = false, bool isReadonly = false)
         {
             try
             {
-                Spell spell = Read(entity.Id, useNavigational, false);
-                if(spell is null)
+                Card card = Read(entity.Id, useNavigational, false);
+                if (card is null)
                 {
-                    throw new Exception($"Spell with id = {entity.Id} does not exist");
+                    throw new Exception($"Card with id = {entity.Id} does not exist");
                 }
-                _cardsDbContext.Spells.Entry(spell).CurrentValues.SetValues(entity);
+                _cardsDbContext.Cards.Entry(card).CurrentValues.SetValues(entity);
                 _cardsDbContext.SaveChanges();
             }
             catch (Exception ex)
@@ -78,13 +77,12 @@ namespace DataLayer
         {
             try
             {
-                Spell spell = Read(key, useNavigational, false);
-                if (spell is null)
+                Card card = Read(key, useNavigational, false);
+                if (card is null)
                 {
-                    throw new Exception($"Spell with id = {key} does not exist");
+                    throw new Exception($"Card with id = {key} does not exist");
                 }
-                _cardsDbContext.Spells.Remove(spell);
-                _cardsDbContext.Cards.Remove(spell);
+                _cardsDbContext.Cards.Remove(card);
                 _cardsDbContext.SaveChanges();
             }
             catch (Exception ex)

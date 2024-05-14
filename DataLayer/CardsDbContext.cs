@@ -24,9 +24,6 @@ namespace DataLayer
             : base(options) { }
 
         public DbSet<Card> Cards { get; set; }
-        public DbSet<Monster> Monsters { get; set; }
-        public DbSet<Spell> Spells { get; set; }
-        public DbSet<Trap> Traps { get; set; }
         public DbSet<Deck> Decks { get; set; }
     }
 }
