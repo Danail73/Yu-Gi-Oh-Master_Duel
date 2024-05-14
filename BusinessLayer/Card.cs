@@ -7,7 +7,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace BusinessLayer
 {
-    public abstract class Card
+    public class Card
     {
         [Key]
         public int Id { get; set; }
@@ -15,6 +15,15 @@ namespace BusinessLayer
         [Required]
         [MaxLength(50)]
         public string Name { get; set; }
+
+        public string Type { get; set; }
+        public string Attribute { get; set; }
+        public string Monster_Typing { get; set; }
+        public int Level { get; set; }
+        public uint ATK { get; set; }
+        public uint DEF { get; set; }
+        public string Spell_Typing { get; set; }
+        public string Trap_Typing { get; set; }
 
         [Required]
         public string CardText { get; set; }
