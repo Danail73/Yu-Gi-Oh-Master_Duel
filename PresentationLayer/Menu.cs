@@ -36,9 +36,9 @@ namespace PresentationLayer
                 {
                     prefix = "  ";
                     ForegroundColor = ConsoleColor.White;
-                    ForegroundColor = ConsoleColor.Black;
+                    BackgroundColor = ConsoleColor.Black;
                 }
-                WriteLine($"{prefix} <<{currOption}>>");
+                WriteLine($"{prefix} {currOption}");
             }
             ResetColor();
         }
