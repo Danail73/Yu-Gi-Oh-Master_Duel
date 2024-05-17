@@ -21,16 +21,16 @@ $$    $$/ $$    $$ |$$ |      $$    $$ |      / $$   |$$ |  $$ |$$ |    $$    $$
  $$$$$$/   $$$$$$$/ $$/        $$$$$$$/       $$$$$$/ $$/   $$/ $$/      $$$$$$/  
               
 ";
-        private Card Card { get; set; }
-        private string[] options;
+        public Card Card { get; set; }
+        public string[] Options { get; set; }
         public Menu cardMenu;
         public int SelectedIndex { get; set; }
 
         public DisplayCardMenu(Card card)
         {
             Card = card;
-            options = GetOptions(Card);
-            cardMenu = new Menu(prompt,options);
+            Options = GetOptions(Card);
+            cardMenu = new Menu(prompt,Options);
             SelectedIndex = cardMenu.Run();
         }
 
@@ -59,7 +59,8 @@ $$    $$/ $$    $$ |$$ |      $$    $$ |      / $$   |$$ |  $$ |$$ |    $$    $$
                 $"Level: {Card.Level}",
                 $"ATK: {Card.ATK}",
                 $"DEF: {Card.DEF}",
-                $"View card"
+                $"View card",
+                $"Back"
             ];
         }
         private string[] SpellOptions(Card card)
@@ -68,7 +69,8 @@ $$    $$/ $$    $$ |$$ |      $$    $$ |      / $$   |$$ |  $$ |$$ |    $$    $$
                 $"Id: {Card.Id}",
                 $"Name: {Card.Name}",
                 $"Spell Type: {Card.Spell_Typing}",
-                $"View card"
+                $"View card",
+                $"Back"
             ];
         }
         private string[] TrapOptions(Card card)
@@ -77,7 +79,8 @@ $$    $$/ $$    $$ |$$ |      $$    $$ |      / $$   |$$ |  $$ |$$ |    $$    $$
                 $"Id: {Card.Id}",
                 $"Name: {Card.Name}",
                 $"Trap Type: {Card.Trap_Typing}",
-                $"View card"
+                $"View card",
+                $"Back"
             ];
         }
     }
